@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +30,10 @@ Route::prefix('/admin')->name('admin.')->middleware(['role:admin', 'auth'])->gro
     // Route::get('/admin', [OperatorController::class, 'index'])->name('operator');
 
     Route::get('/home', function () {
-        return 'ini admin';
+        return view('admin.index');
     })->name('home');
+    Route::resource('user', UserController::class);
+    Route::resource('category', CategoryController::class);
     //semua route dalam grup ini hanya bisa diakses oleh operator
 });
 
@@ -39,7 +43,7 @@ Route::prefix('/user')->name('user.')->middleware(['role:user', 'auth'])->group(
     // Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
 
     Route::get('/user', function () {
-        return 'ini user';
+        return view('user.index');
     })->name('home');
-    //semua route dalam grup ini hanya bisa diakses siswa
+    //semua route dalam grup ini hanya bisa diakses user
 });
