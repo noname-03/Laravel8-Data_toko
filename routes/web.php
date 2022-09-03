@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\DetailTransactionController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,14 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home1', [App\Http\Controllers\HomeController::class, 'home'])->name('home1');
 // Route::middleware(['auth', 'role:admin'])->group(function () {
+
+Route::resource('transaction', TransactionController::class);
+Route::get('/transaction/{transaction_id}/detailtransaction', [DetailTransactionController::class, 'index'])->name('detailtransaction.index');
+Route::get('/transaction/{transaction_id}/detailtransaction/create', [DetailTransactionController::class, 'create'])->name('detailtransaction.create');
+Route::post('/transaction/{transaction_id}/detailtransaction', [DetailTransactionController::class, 'store'])->name('detailtransaction.store');
+Route::get('/transaction/{transaction_id}/detailtransaction/{detailtransaction_id}/show', [DetailTransactionController::class, 'show'])->name('detailtransaction.show');
+Route::post('/transaction/{transaction_id}/detailtransaction/{detailtransaction_id}/accept', [DetailTransactionController::class, 'accept'])->name('detailtransaction.accept');
+Route::post('/transaction/{transaction_id}/detailtransaction/{detailtransaction_id}/send', [DetailTransactionController::class, 'send'])->name('detailtransaction.send');
 
 Route::prefix('/admin')->name('admin.')->middleware(['role:admin', 'auth'])->group(function () {
     // Route::get('/admin', [OperatorController::class, 'index'])->name('operator');

@@ -2,7 +2,7 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3">Pemrograman Laravel</div>
+        <div class="sidebar-brand-text mx-3"> <img src={{asset('img/logo_haus.png')}} width="100" /></div>
     </a>
 
     <!-- Divider -->
@@ -82,8 +82,8 @@
                     <a class="collapse-item" href="{{ route('admin.category.index') }}">Data Kategori</a>
                     <a class="collapse-item" href="{{ route('admin.cabang.index') }}">Data Cabang</a>
                     <a class="collapse-item" href="{{ route('admin.user.index') }}">Data User</a>
-                    <a class="collapse-item" href="{{ route('admin.user.index') }}">Data Permintaan</a>
-                    <a class="collapse-item" href="{{ route('admin.user.index') }}">Data Yang Sudah Disetujui</a>
+                    <a class="collapse-item" href="{{ route('transaction.index') }}">Data Transaksi</a>
+                    {{-- <a class="collapse-item" href="{{ route('admin.user.index') }}">Data Yang Sudah Disetujui</a> --}}
                 </div>
             </div>
         </li>

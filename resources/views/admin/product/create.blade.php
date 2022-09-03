@@ -18,7 +18,7 @@
                         <div class="form-group col-md-6">
                             <label >Kategori <span class="required">*</span></label>
                             <select name="category_id" class="form-control" id="exampleFormControlSelect1" required>
-                                <option selected>Choose...</option>
+                                    <option selected>Choose...</option>
                                     @foreach ($category as $item)
                                     <option value="{{ $item->id }}">{{$item->name}}</option>
                                     @endforeach

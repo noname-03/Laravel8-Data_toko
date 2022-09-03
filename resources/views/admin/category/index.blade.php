@@ -11,7 +11,7 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Data Kelas</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Data Kategori</h6>
                 <p></p>
                 <a href="{{ route('admin.category.create') }}" class="btn btn-success">Tambah Data</a>
             </div>

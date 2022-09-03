@@ -11,9 +11,9 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Data Transaction</h6>
                 <p></p>
-                <a href="{{ route('admin.user.create') }}" class="btn btn-success">Tambah Data</a>
+                <a href="{{ route('transaction.create') }}" class="btn btn-success">Tambah Data</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -21,31 +21,31 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Email</th>
-                                <th>Status</th>
+                                <th>Dari Cabang</th>
+                                <th>Ke Cabang</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>No</th>
-                                <th>Email</th>
-                                <th>Status</th>
+                                <th>Dari Cabang</th>
+                                <th>Ke Cabang</th>
                                 <th>Aksi</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach ($users as $item)
+                            @foreach ($transaction as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->email }}</td>
-                                    <td>{{ $item->role }}</td>
+                                    <td>{{ $item->user_from->name }}</td>
+                                    <td>{{ $item->user_to->name }}</td>
                                     <td>
-                                        <form action="{{ route('admin.user.destroy', $item->id) }}" method="post">
+                                        <form action="{{ route('transaction.destroy', $item->id) }}" method="post">
                                             @csrf @method('DELETE')
-                                            <a class="btn btn-primary" href="{{ route('admin.user.edit', $item->id) }}"
+                                            <a class="btn btn-primary" href="{{ route('transaction.edit', $item->id) }}"
                                                 role="button"><i class="fa fa-edit"></i></a>
-                                            {{-- <a class="btn btn-success" href="{{ route('product.show', ['product'=>$data->id]) }}" role="button"><i class="fa fa-eye"></i></a> --}}
+                                            <a class="btn btn-success" href="{{ route('detailtransaction.index', $item->id) }}" role="button"><i class="fa fa-plus"></i></a>
                                             <button type="submit" class="btn btn-danger"
                                                 onclick="return confirm('apakah anda mau menghapus data ini ?')"><i
                                                     class="fa fa-trash"></i></button>

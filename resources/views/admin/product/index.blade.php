@@ -13,7 +13,7 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Data Product</h6>
                 <p></p>
-                <a href="{{ route('admin.product.create', Auth::user()->id) }}" class="btn btn-success">Tambah Data</a>
+                <a href="{{ route('admin.product.create', $user->id) }}" class="btn btn-success">Tambah Data</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -40,7 +40,7 @@
                             @foreach ($products as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->user->name }}</td>
                                     <td>{{ $item->qty }}</td>
                                     <td><img src="{{ asset('storage/images/product/'.$item->photo) }}" width="40" height="40"></td>
                                     <td>
@@ -48,7 +48,7 @@
                                             @csrf @method('DELETE')
                                             <a class="btn btn-primary" href="{{ route('admin.product.edit', [$user->id, $item->id]) }}"
                                                 role="button"><i class="fa fa-edit"></i></a>
-                                            {{-- <a class="btn btn-success" href="{{ route('admin.product.show',  [$user->id, $item->id]) }}" role="button"><i class="fa fa-eye"></i></a> --}}
+                                            <a class="btn btn-success" href="{{ route('admin.product.show',  [$user->id, $item->id]) }}" role="button"><i class="fa fa-eye"></i></a>
                                             <button type="submit" class="btn btn-danger"
                                                 onclick="return confirm('apakah anda mau menghapus data ini ?')"><i
                                                     class="fa fa-trash"></i></button>

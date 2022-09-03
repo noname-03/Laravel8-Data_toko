@@ -7,7 +7,7 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Data Kelas</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Data User</h6>
                 <p></p>
             </div>
             <div class="card-body">
@@ -52,7 +52,7 @@
                             <input type="password" name="password" id="role" required="required" class="form-control ">
                         </div>
                     </div>
-                    
+
                     <div class="ln_solid"></div>
                     <div class="item form-group">
                         <div class="col-md-6 col-sm-6 ">

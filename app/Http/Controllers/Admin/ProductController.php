@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public function index(Request $request, $userId)
+    public function index($userId)
     {
         $user = User::findOrFail($userId);
         $products = $user->products;
