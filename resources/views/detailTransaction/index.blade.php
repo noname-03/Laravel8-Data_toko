@@ -13,7 +13,11 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Pilih Product</h6>
                 <p></p>
+                @if ($cekData > 0)
+
+                @else
                 <a href="{{ route('detailtransaction.create', $transaction->id) }}" class="btn btn-success">Tambah Data</a>
+                @endif
             </div>
             <div class="card-body">
                 <div class="table-responsive">

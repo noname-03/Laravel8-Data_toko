@@ -48,7 +48,6 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Laporan Produk</h6>
                 <p></p>
-                {{-- <a href="{{ route('admin.product.create', Auth::user()->id) }}" class="btn btn-success">Tambah Data</a> --}}
                 <button class="btn btn-sm btn-primary" onclick="window.print()">
                     <i class="fas fa-print"></i>Print</button>
             </div>
@@ -128,18 +127,16 @@
                     <div class="form-group col-md-1">
                         <form action="{{ route('detailtransaction.send', [$transaction->id, $detailTransactions->id ]) }}" method="post">
                             @csrf @method('POST')
-                            <button type="submit" class="btn btn-success">Kirim</button>
+                            <button type="submit" class="btn btn-success" {{ $cekButtonDikirim > '0' ? 'disabled' : '' }}>Kirim</button>
                         </form>
                     </div>
                     <div class="form-group col-md-1">
                         <form action="{{ route('detailtransaction.accept', [$transaction->id, $detailTransactions->id ]) }}" method="post">
                             @csrf @method('POST')
-                            <button type="submit" class="btn btn-info">Terima</button>
+                            <button type="submit" class="btn btn-info" {{ $cekButtonDiterima > '0' ? 'disabled' : '' }}>Terima</button>
                         </form>
                     </div>
                 </div>
-                {{-- <a class="btn btn-info" href="{{ route('detailtransaction.send', [$transaction->id, $detailTransactions->id ]) }}" role="button">Kirim</i></a>
-                <a class="btn btn-success" href="{{ route('detailtransaction.accept', [$transaction->id, $detailTransactions->id ]) }}" role="button">Terima</i></a> --}}
             </div>
 
     </div>

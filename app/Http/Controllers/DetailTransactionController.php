@@ -13,8 +13,11 @@ class DetailTransactionController extends Controller
     {
         $transaction = Transaction::findOrFail($transactionId);
         $detailTransactions = $transaction->detailTransactions;
+        $cekData = $transaction->detailTransactions->count();
+        // dd($cekData);
         return view('detailTransaction.index', [
             'transaction' => $transaction,
+            'cekData' => $cekData,
             'detailTransactions' => $detailTransactions
         ]);
     }
@@ -56,6 +59,11 @@ class DetailTransactionController extends Controller
         $detail['product_id'] = $detailTransactions->product_id;
         $detail['qty'] = $detailTransactions->qty;
         $detail['status'] = 'Dikirim';
+        $product = Product::findOrFail($detailTransactions->product_id);
+        $total = $product->qty - $detailTransactions->qty;
+        $product->update([
+            'qty' => $total,
+        ]);
         $transaction->detailTransactions()->create($detail);
         return redirect()->route('detailtransaction.show', [$transactionId, $detailTransactionsId]);
     }
@@ -83,10 +91,15 @@ class DetailTransactionController extends Controller
         $transaction = Transaction::findOrFail($transactionId);
         $detailTransactions = $transaction->detailTransactions()->find($detailTransactionsId);
         $cekStatus = $transaction->detailTransactions()->get();
+        $cekButtonDikirim = $transaction->detailTransactions()->where('transaction_id', $transactionId)->where('status', 'Dikirim')->count();
+        $cekButtonDiterima = $transaction->detailTransactions()->where('transaction_id', $transactionId)->where('status', 'Diterima')->count();
+        // dd($cekButtonDiterima);
         return view('detailTransaction.show')->with([
             'transaction' => $transaction,
             'cekStatus' => $cekStatus,
-            'detailTransactions' => $detailTransactions
+            'detailTransactions' => $detailTransactions,
+            'cekButtonDikirim' => $cekButtonDikirim,
+            'cekButtonDiterima' => $cekButtonDiterima,
         ]);
     }
 
