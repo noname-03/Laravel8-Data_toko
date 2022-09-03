@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DataCabangController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\UserController;
@@ -17,7 +19,7 @@ use App\Http\Controllers\Admin\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Auth::routes();
@@ -30,10 +32,20 @@ Route::prefix('/admin')->name('admin.')->middleware(['role:admin', 'auth'])->gro
     // Route::get('/admin', [OperatorController::class, 'index'])->name('operator');
 
     Route::get('/home', function () {
-        return view('admin.index');
+        return redirect()->route('admin.category.index');
     })->name('home');
     Route::resource('user', UserController::class);
     Route::resource('category', CategoryController::class);
+    Route::get('/cabang', [DataCabangController::class, 'index'])->name('cabang.index');
+    Route::get('/cabang/{id}/show', [DataCabangController::class, 'show'])->name('cabang.show');
+
+    Route::get('/cabang/{cabang_id}/product', [ProductController::class, 'index'])->name('product.index');
+    Route::get('/cabang/{cabang_id}/product/create', [ProductController::class, 'create'])->name('product.create');
+    Route::post('/cabang/{cabang_id}/product', [ProductController::class, 'store'])->name('product.store');
+    Route::get('/cabang/{cabang_id}/product/{product_id}', [ProductController::class, 'show'])->name('product.show');
+    Route::get('/cabang/{cabang_id}/product/{product_id}/edit', [ProductController::class, 'edit'])->name('product.edit');
+    Route::put('/cabang/{cabang_id}/product/{product_id}', [ProductController::class, 'update'])->name('product.update');
+    Route::delete('/cabang/{cabang_id}/product/{product_id}', [ProductController::class, 'destroy'])->name('product.destroy');
     //semua route dalam grup ini hanya bisa diakses oleh operator
 });
 

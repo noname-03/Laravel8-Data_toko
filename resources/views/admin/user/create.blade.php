@@ -14,43 +14,48 @@
                 <form action="{{ route('admin.user.store') }}" method="POST" id="demo-form2" data-parsley-validate
                     class="form-horizontal form-label-left">
                     @csrf
-                    <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Name <span
-                                class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 ">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="code_store">Kode Cabang</label>
+                            <input type="text" class="form-control" id="code_store" name="code_store" placeholder="Masukan kode cabang">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="no_Hp">Nomer Handphone</label>
+                            <input type="text" class="form-control" id="handphone" name="handphone" placeholder="Masukan Nomer Handphone">
+                        </div>
+                        <div class="form-group col-12">
+                            <label for="inputAddress">Address</label>
+                            <textarea type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address">
+                            </textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label >Name <span class="required">*</span>
+                            </label>
                             <input type="text" name="name" id="first-name" required="required" class="form-control ">
                         </div>
-                    </div>
-                    <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="exampleFormControlSelect1">Role
+                        <div class="form-group col-md-6">
+                            <label >Role
                             <span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 ">
                             <select name="role" class="form-control" id="exampleFormControlSelect1" required>
                                 <option value="admin">Admin</option>
                                 <option value="user">User</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Email <span
-                                class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 ">
+                        <div class="form-group col-md-6">
+                            <label >Email <span class="required">*</span>
+                            </label>
                             <input type="text" name="email" id="role" required="required" class="form-control ">
                         </div>
-                    </div>
-                    <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Password <span
-                                class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 ">
+                        <div class="form-group col-md-6">
+                            <label >Password <span class="required">*</span>
+                            </label>
                             <input type="password" name="password" id="role" required="required" class="form-control ">
                         </div>
                     </div>
+                    
                     <div class="ln_solid"></div>
                     <div class="item form-group">
-                        <div class="col-md-6 col-sm-6 offset-md-3">
+                        <div class="col-md-6 col-sm-6 ">
                             <button class="btn btn-primary" type="reset">Reset</button>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>

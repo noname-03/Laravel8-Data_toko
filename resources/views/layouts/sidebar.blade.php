@@ -80,7 +80,10 @@
                     {{-- <a class="collapse-item" href="{{ route('admin.class_education.index') }}">Data Kelas</a> --}}
                     {{-- <a class="collapse-item" href="{{ route('admin.attendances.index') }}">Data Absensi</a> --}}
                     <a class="collapse-item" href="{{ route('admin.category.index') }}">Data Kategori</a>
+                    <a class="collapse-item" href="{{ route('admin.cabang.index') }}">Data Cabang</a>
                     <a class="collapse-item" href="{{ route('admin.user.index') }}">Data User</a>
+                    <a class="collapse-item" href="{{ route('admin.user.index') }}">Data Permintaan</a>
+                    <a class="collapse-item" href="{{ route('admin.user.index') }}">Data Yang Sudah Disetujui</a>
                 </div>
             </div>
         </li>
@@ -95,6 +98,9 @@
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data:User</h6>
+                    <a class="collapse-item" href="{{ route('admin.user.index') }}">Data Produk</a>
+                    <a class="collapse-item" href="{{ route('admin.user.index') }}">Data Permintaan</a>
+                    <a class="collapse-item" href="{{ route('admin.user.index') }}">Data Yang Sudah Disetujui</a>
                     {{-- <a class="collapse-item" href="{{ route('mahasiswa.class.index') }}">Data Kelas</a> --}}
                 </div>
             </div>

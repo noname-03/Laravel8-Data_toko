@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -38,11 +39,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+        $user = User::create($input);
 
         return redirect()->route('admin.user.index');
     }
@@ -79,11 +78,20 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         // $user->update($request->all());
-        $user->update([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
+        $input = $request->all();
+        if (!empty($input['password'])) {
+            $input['password'] = Hash::make($input['password']);
+        } else {
+            $input = Arr::except($input, array('password'));
+        }
+        // $user = User::find($id);
+        $user->update($input);
+        // $user->update([
+        //     'name' => $request['name'],
+        //     'code_store' => $request['code_store'],
+        //     'email' => $request['email'],
+        //     'password' => Hash::make($request['password']),
+        // ]);
         return redirect()->route('admin.user.index');
     }
 

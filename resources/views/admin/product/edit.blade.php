@@ -11,48 +11,43 @@
                 <p></p>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.user.update', ['user' => $user->id]) }}" method="POST" id="demo-form2"
+                <form action="{{ route('admin.product.update', [$user->id, $product->id]) }}" enctype="multipart/form-data" method="POST" id="demo-form2"
                     user-parsley-validate class="form-horizontal form-label-left">
-                    @csrf @method('PATCH')
+                    @csrf @method('PUT')
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="code_store">Kode Cabang</label>
-                            <input type="text" class="form-control" id="code_store" name="code_store" placeholder="Masukan kode cabang" value="{{ $user->code_store }}">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="no_Hp">Nomer Handphone</label>
-                            <input type="text" class="form-control" id="handphone" name="handphone" placeholder="Masukan Nomer Handphone" value="{{ $user->handphone }}">
-                        </div>
-                        <div class="form-group col-12">
-                            <label for="inputAddress">Address</label>
-                            <textarea type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address"> {{ $user->address }} </textarea>
+                            <label >Kategori <span class="required">*</span></label>
+                            <select name="category_id" class="form-control" id="exampleFormControlSelect1" required>
+                                <option selected>Choose...</option>
+                                    @foreach ($category as $item)
+                                    <option value="{{ $item->id }}" {{ $product->category_id == $item->id ? 'selected' : '' }} >{{$item->name}}</option>
+                                    @endforeach
+                            </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label >Name <span class="required">*</span>
                             </label>
-                            <input type="text" value="{{ $user->name }}" name="name" id="first-name" required="required" class="form-control ">
+                            <input type="text" name="name" id="first-name" required="required" class="form-control " value="{{ $product->name }}">
                         </div>
                         <div class="form-group col-md-6">
-                            <label >Role
-                            <span class="required">*</span></label>
-                            <select name="role" class="form-control" id="exampleFormControlSelect1" required>
-                                <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
-                                <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User
-                                </option>
-                            </select>
+                            <label for="no_Hp">Kode Produk <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="code_product" name="code_product" placeholder="Masukan Kode Produk" required value="{{ $product->code_product }}">
                         </div>
                         <div class="form-group col-md-6">
-                            <label >Email <span class="required">*</span>
+                            <label for="qty">Stok <span class="required">*</span></label>
+                            <input type="text" class="form-control" id="qty" name="qty" value="{{ $product->qty }}" placeholder="Masukan Kode Jumlah Stok" required>
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="inputEmail4">Foto</label>
+                            <input type="file" class="form-control" id="thumbnail" name="file" placeholder="Thumbnail">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label >Price <span class="required">*</span>
                             </label>
-                            <input type="text" name="email" id="role" value="{{ $user->email }}" required="required" class="form-control ">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label >Password <span class="required">*</span>
-                            </label>
-                            <input type="password" name="password" id="role" class="form-control ">
+                            <input type="text" name="price" id="role" required="required" class="form-control " value="{{ $product->price }}">
                         </div>
                     </div>
-                    
+
                     {{-- <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Code <span
                                 class="required">*</span>
