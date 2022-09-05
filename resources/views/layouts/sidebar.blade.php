@@ -98,7 +98,7 @@
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data:User</h6>
-                    <a class="collapse-item" href="{{ route('admin.user.index') }}">Data Produk</a>
+                    <a class="collapse-item" href="{{ route('user.product.index', Auth::user()->id) }}">Data Produk</a>
                     <a class="collapse-item" href="{{ route('admin.user.index') }}">Data Permintaan</a>
                     <a class="collapse-item" href="{{ route('admin.user.index') }}">Data Yang Sudah Disetujui</a>
                     {{-- <a class="collapse-item" href="{{ route('mahasiswa.class.index') }}">Data Kelas</a> --}}
