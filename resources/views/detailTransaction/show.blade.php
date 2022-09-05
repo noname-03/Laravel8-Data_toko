@@ -107,7 +107,7 @@
                                 <td style="width:13.3%; vertical-align: top; text-align: center">
                                 </td>
                                 <td style="width:30%; vertical-align: top; text-align: center">
-                                    {{ $detailTransactions->created_at }}
+                                    {{ $detailTransactions->created_at->format('Y-m-d')  }}
                                     {{-- Jakarta, 24 Agustus 2022 --}}
                                     <br>
                                     <br>

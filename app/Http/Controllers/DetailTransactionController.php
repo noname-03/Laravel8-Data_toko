@@ -55,16 +55,16 @@ class DetailTransactionController extends Controller
     {
         $transaction = Transaction::findOrFail($transactionId);
         $detailTransactions = DetailTransaction::findOrFail($detailTransactionsId);
-        $detail['transaction_id'] = $transaction->id;
-        $detail['product_id'] = $detailTransactions->product_id;
-        $detail['qty'] = $detailTransactions->qty;
-        $detail['status'] = 'Dikirim';
         $product = Product::findOrFail($detailTransactions->product_id);
         $total = $product->qty - $detailTransactions->qty;
         $product->update([
             'qty' => $total,
         ]);
-        $transaction->detailTransactions()->create($detail);
+        $detail['transaction_id'] = $transaction->id;
+        $detail['product_id'] = $detailTransactions->product_id;
+        $detail['qty'] = $detailTransactions->qty;
+        $detail['status'] = 'Dikirim';
+        $transaction->detailTransactions()->create($detail);;
         return redirect()->route('detailtransaction.show', [$transactionId, $detailTransactionsId]);
     }
 
@@ -77,6 +77,17 @@ class DetailTransactionController extends Controller
         $detail['qty'] = $detailTransactions->qty;
         $detail['status'] = 'Diterima';
         $transaction->detailTransactions()->create($detail);
+        //add product new
+        $product = Product::findOrFail($detailTransactions->product_id);
+        $products = new Product;
+        $products->user_id = $transaction->to_user_id;
+        $products->category_id = $product->category_id;
+        $products->name = $product->name;
+        $products->code_product = $product->code_product;
+        $products->qty = $detailTransactions->qty;
+        $products->photo = $product->photo;
+        $products->price = $product->price;
+        $products->save();
         return redirect()->route('detailtransaction.show', [$transactionId, $detailTransactionsId]);
     }
 
