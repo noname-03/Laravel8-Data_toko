@@ -1,8 +1,7 @@
 @extends('layouts.app')
 @section('css')
-<style media="print">
-
-@page    {
+    <style media="print">
+        @page {
             size: auto;
             margin: 0;
         }
@@ -16,7 +15,8 @@
             color: #000;
         }
 
-        #print-area, #print-area * {
+        #print-area,
+        #print-area * {
             visibility: visible;
         }
 
@@ -31,8 +31,7 @@
         #table-title {
             display: block;
         }
-
-</style>
+    </style>
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -55,50 +54,58 @@
                 <div class="w-100 mx-auto" id="print-area">
                     <div class="table-responsive">
                         <table class="w-100 mb-3">
-                            <tbody><tr>
-                                {{-- <td style="width: 25%; vertical-align: middle;">
+                            <tbody>
+                                <tr>
+                                    {{-- <td style="width: 25%; vertical-align: middle;">
                                     <p style="font-size: 23px; font-weight: bold;">Product</p>
                                 </td> --}}
-                                <td style="width: 60%; vertical-align: top; font-size: 13px;">
-                                    <p class="mb-0">Dari : {{ $transaction->user_from->name }}</p>
-                                    <p class="mb-0">Untuk : {{ $transaction->user_to->name }}</p>
-                                    {{-- <p class="mb-0">Email: hausofficial@haus.com</p> --}}
-                                </td>
-                                <td style="width: 15%; vertical-align: top; text-align: right;">
-                                    <img src={{asset('img/logo_haus.png')}} width="100" />
+                                    <td style="width: 60%; vertical-align: top; font-size: 13px;">
+                                        <p class="mb-0">Dari : {{ $transaction->user_from->name }}</p>
+                                        <p class="mb-0">Untuk : {{ $transaction->user_to->name }}</p>
+                                        {{-- <p class="mb-0">Email: hausofficial@haus.com</p> --}}
+                                    </td>
+                                    <td style="width: 15%; vertical-align: top; text-align: right;">
+                                        <img src={{ asset('img/logo_haus.png') }} width="100" />
 
-                                </td>
-                            </tr>
-                        </tbody></table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
 
                         <table class="table table-striped mb-5">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
+                                    <th scope="col">Kode Produduk</th>
                                     <th scope="col">Nama</th>
+                                    <th scope="col">Kategori</th>
                                     <th scope="col">Jumlah</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td>{{$detailTransactions->product->name}}</td>
-                                    <td>{{$detailTransactions->qty}}</td>
-                                <tr>                                                                                             </tbody>
+                                    <td>{{ $detailTransactions->product->code_product }}</td>
+                                    <td>{{ $detailTransactions->product->name }}</td>
+                                    <td>{{ $detailTransactions->product->category->name }}</td>
+                                    <td>{{ $detailTransactions->qty }}</td>
+                                <tr>
+                            </tbody>
                         </table>
 
                         <table class="w-100 mb-3">
-                            <tbody><tr>
-                                <td style="width:30%; vertical-align: top; text-align: center">
-                                    <br>
-                                    <br>
-                                    @foreach ($cekStatus as $item)
-                                        <tr>
-                                            <td>Status : {{ $item->status }} {{ $item->created_at }}</td>
-                                        </tr>
-                                    @endforeach
-                                    <br>
-                                    {{-- <b>Direktur</b> --}}
+                            <tbody>
+                                <tr>
+                                    <td style="width:30%; vertical-align: top; text-align: center">
+                                        <br>
+                                        <br>
+                                        @foreach ($cekStatus as $item)
+                                <tr>
+                                    <td>Status : {{ $item->status }} {{ $item->created_at }}</td>
+                                </tr>
+                                @endforeach
+                                <br>
+                                {{-- <b>Direktur</b> --}}
                                 </td>
                                 <td style="width:13.3%; vertical-align: top; text-align: center">
                                 </td>
@@ -107,7 +114,7 @@
                                 <td style="width:13.3%; vertical-align: top; text-align: center">
                                 </td>
                                 <td style="width:30%; vertical-align: top; text-align: center">
-                                    {{ $detailTransactions->created_at->format('Y-m-d')  }}
+                                    {{ $detailTransactions->created_at->format('Y-m-d') }}
                                     {{-- Jakarta, 24 Agustus 2022 --}}
                                     <br>
                                     <br>
@@ -122,22 +129,26 @@
                 </div>
             </div>
         </div>
-            <div class="card-body">
-                <div class="form-row">
-                    <div class="form-group col-md-1">
-                        <form action="{{ route('detailtransaction.send', [$transaction->id, $detailTransactions->id ]) }}" method="post">
-                            @csrf @method('POST')
-                            <button type="submit" class="btn btn-success" {{ $cekButtonDikirim > '0' ? 'disabled' : '' }}>Kirim</button>
-                        </form>
-                    </div>
-                    <div class="form-group col-md-1">
-                        <form action="{{ route('detailtransaction.accept', [$transaction->id, $detailTransactions->id ]) }}" method="post">
-                            @csrf @method('POST')
-                            <button type="submit" class="btn btn-info" {{ $cekButtonDiterima > '0' ? 'disabled' : '' }}>Terima</button>
-                        </form>
-                    </div>
+        <div class="card-body">
+            <div class="form-row">
+                <div class="form-group col-md-1">
+                    <form action="{{ route('detailtransaction.send', [$transaction->id, $detailTransactions->id]) }}"
+                        method="post">
+                        @csrf @method('POST')
+                        <button type="submit" class="btn btn-success"
+                            {{ $cekButtonDikirim > '0' ? 'disabled' : '' }}>Kirim</button>
+                    </form>
+                </div>
+                <div class="form-group col-md-1">
+                    <form action="{{ route('detailtransaction.accept', [$transaction->id, $detailTransactions->id]) }}"
+                        method="post">
+                        @csrf @method('POST')
+                        <button type="submit" class="btn btn-info"
+                            {{ $cekButtonDiterima > '0' ? 'disabled' : '' }}>Terima</button>
+                    </form>
                 </div>
             </div>
+        </div>
 
     </div>
 @endsection
