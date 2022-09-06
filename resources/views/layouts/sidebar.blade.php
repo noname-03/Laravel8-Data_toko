@@ -90,6 +90,7 @@
                     <a class="collapse-item" href="{{ route('report.category') }}">Laporan Kategori</a>
                     <a class="collapse-item" href="{{ route('report.cabang') }}">Laporan Cabang</a>
                     <a class="collapse-item" href="{{ route('report.user') }}">Laporan User</a>
+                    <a class="collapse-item" href="{{ route('report.productAdmin') }}">Laporan Product</a>
                     {{-- <a class="collapse-item" href="{{ route('transaction.index') }}">Data Transaksi</a> --}}
                     {{-- <a class="collapse-item" href="{{ route('admin.user.index') }}">Data Yang Sudah Disetujui</a> --}}
                 </div>

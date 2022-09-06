@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -45,5 +46,10 @@ class ReportController extends Controller
             'user' => $user,
             'products' => $products
         ]);
+    }
+    public function productAdmin()
+    {
+        $products = Product::all();
+        return view('report.productAdmin', compact('products'));
     }
 }

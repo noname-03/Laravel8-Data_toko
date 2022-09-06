@@ -48,7 +48,8 @@ Route::get('/laporan/cabang', [ReportController::class, 'cabang'])->name('report
 Route::get('/laporan/user', [ReportController::class, 'user'])->name('report.user');
 Route::get('/laporan/product/out', [ReportController::class, 'product_out'])->name('report.product.out');
 Route::get('/laporan/product/in', [ReportController::class, 'product_in'])->name('report.product.in');
-Route::get('/laporan//cabang/{cabang_id}/product', [ReportController::class, 'product'])->name('report.product');
+Route::get('/laporan/cabang/{cabang_id}/product', [ReportController::class, 'product'])->name('report.product');
+Route::get('/laporan/product', [ReportController::class, 'productAdmin'])->name('report.productAdmin');
 
 Route::prefix('/admin')->name('admin.')->middleware(['role:admin', 'auth'])->group(function () {
     // Route::get('/admin', [OperatorController::class, 'index'])->name('operator');
