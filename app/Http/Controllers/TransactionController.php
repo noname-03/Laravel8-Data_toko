@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -15,13 +16,11 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transaction = Transaction::all();
-        // foreach ($transaction as $item) {
-        //     // dd($item->user->name);
-        //     $from_user_id = User::findOrFail($item->from_user_id);
-        //     $to_user_id = User::findOrFail($item->to_user_id);
-        //     dd($from_user_id->name);
-        // }
+        if (Auth::user()->role == 'admin') {
+            $transaction = Transaction::all();
+        } else {
+            $transaction = Transaction::where('from_user_id', Auth::user()->id)->orWhere('to_user_id', Auth::user()->id)->get();
+        }
         return view('transaction.index', compact('transaction'));
     }
 

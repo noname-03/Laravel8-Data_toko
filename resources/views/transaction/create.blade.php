@@ -16,25 +16,36 @@
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label >Dari Cabang
-                            <span class="required">*</span></label>
+                            <label>Dari Cabang
+                                <span class="required">*</span></label>
                             <select name="from_user_id" class="form-control" id="exampleFormControlSelect1" required>
                                 <option selected>Choose...</option>
-                                    @foreach ($user as $item)
-                                    <option value="{{ $item->id }}">{{$item->name}}</option>
-                                    @endforeach
+                                @foreach ($user as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
                             </select>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label >Untuk Cabang
-                            <span class="required">*</span></label>
-                            <select name="to_user_id" class="form-control" id="exampleFormControlSelect1" required>
-                                <option selected>Choose...</option>
+                        @if (Auth::user()->role == 'user')
+                            <div class="form-group col-md-6">
+                                <label>Untuk Cabang
+                                    <span class="required">*</span></label>
+                                <input type="text" id="first-name" required="required" class="form-control"
+                                    value="{{ Auth::user()->name }}" disabled>
+                                <input type="text" name="to_user_id" id="first-name" required="required"
+                                    class="form-control" value="{{ Auth::user()->id }}" hidden>
+                            </div>
+                        @else
+                            <div class="form-group col-md-6">
+                                <label>Untuk Cabang
+                                    <span class="required">*</span></label>
+                                <select name="to_user_id" class="form-control" id="exampleFormControlSelect1" required>
+                                    <option selected>Choose...</option>
                                     @foreach ($user as $item)
-                                    <option value="{{ $item->id }}">{{$item->name}}</option>
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
-                            </select>
-                        </div>
+                                </select>
+                            </div>
+                        @endif
                     </div>
 
                     <div class="ln_solid"></div>

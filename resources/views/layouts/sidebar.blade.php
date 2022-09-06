@@ -2,7 +2,7 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-        <div class="sidebar-brand-text mx-3"> <img src={{asset('img/logo_haus.png')}} width="100" /></div>
+        <div class="sidebar-brand-text mx-3"> <img src={{ asset('img/logo_haus.png') }} width="100" /></div>
     </a>
 
     <!-- Divider -->
@@ -85,6 +85,14 @@
                     <a class="collapse-item" href="{{ route('transaction.index') }}">Data Transaksi</a>
                     {{-- <a class="collapse-item" href="{{ route('admin.user.index') }}">Data Yang Sudah Disetujui</a> --}}
                 </div>
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Laporan:</h6>
+                    <a class="collapse-item" href="{{ route('report.category') }}">Laporan Kategori</a>
+                    <a class="collapse-item" href="{{ route('report.cabang') }}">Laporan Cabang</a>
+                    <a class="collapse-item" href="{{ route('report.user') }}">Laporan User</a>
+                    {{-- <a class="collapse-item" href="{{ route('transaction.index') }}">Data Transaksi</a> --}}
+                    {{-- <a class="collapse-item" href="{{ route('admin.user.index') }}">Data Yang Sudah Disetujui</a> --}}
+                </div>
             </div>
         </li>
     @else
@@ -99,9 +107,14 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data:User</h6>
                     <a class="collapse-item" href="{{ route('user.product.index', Auth::user()->id) }}">Data Produk</a>
-                    <a class="collapse-item" href="{{ route('admin.user.index') }}">Data Permintaan</a>
-                    <a class="collapse-item" href="{{ route('admin.user.index') }}">Data Yang Sudah Disetujui</a>
-                    {{-- <a class="collapse-item" href="{{ route('mahasiswa.class.index') }}">Data Kelas</a> --}}
+                    <a class="collapse-item" href="{{ route('user.transaction.index') }}">Data Transaksi</a>
+                </div>
+
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Laporan:</h6>
+                    <a class="collapse-item" href="{{ route('report.product.out') }}">Laporan Barang Keluar</a>
+                    <a class="collapse-item" href="{{ route('report.product.in') }}">Laporan Barang Masuk</a>
+                    <a class="collapse-item" href="{{ route('report.product', Auth::user()->id) }}">Laporan Produk</a>
                 </div>
             </div>
         </li>

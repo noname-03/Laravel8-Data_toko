@@ -11,25 +11,41 @@
                 <p></p>
             </div>
             <div class="card-body">
-                <form action="{{ route('transaction.update',  $transaction->id) }}" method="POST" id="demo-form2"
+                <form action="{{ route('transaction.update', $transaction->id) }}" method="POST" id="demo-form2"
                     user-parsley-validate class="form-horizontal form-label-left">
                     @csrf @method('PATCH')
                     <div class="form-row">
+
+                        @if (Auth::user()->role == 'user')
+                            <div class="form-group col-md-6">
+                                <label>Dari Cabang
+                                    <span class="required">*</span></label>
+                                <input type="text" id="first-name" required="required" class="form-control"
+                                    value="{{ Auth::user()->name }}" disabled>
+                                <input type="text" name="from_user_id" id="first-name" required="required"
+                                    class="form-control" value="{{ Auth::user()->id }}" hidden>
+                            </div>
+                        @else
+                            <div class="form-group col-md-6">
+                                <label>Dari Cabang
+                                    <span class="required">*</span></label>
+                                <select name="from_user_id" class="form-control" id="exampleFormControlSelect1" required>
+                                    @foreach ($user as $item)
+                                        <option value="{{ $item->id }}"
+                                            {{ $transaction->from_user_id == $item->id ? 'selected' : '' }}>
+                                            {{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endif
                         <div class="form-group col-md-6">
-                            <label >Dari Cabang
-                            <span class="required">*</span></label>
-                            <select name="from_user_id" class="form-control" id="exampleFormControlSelect1" required>
-                                @foreach ($user as $item)
-                                    <option value="{{ $item->id }}" {{ $transaction->from_user_id == $item->id ? 'selected' : '' }} >{{$item->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label >Untuk Cabang
-                            <span class="required">*</span></label>
+                            <label>Untuk Cabang
+                                <span class="required">*</span></label>
                             <select name="to_user_id" class="form-control" id="exampleFormControlSelect1" required>
                                 @foreach ($user as $item)
-                                    <option value="{{ $item->id }}" {{ $transaction->to_user_id == $item->id ? 'selected' : '' }} >{{$item->name}}</option>
+                                    <option value="{{ $item->id }}"
+                                        {{ $transaction->to_user_id == $item->id ? 'selected' : '' }}>{{ $item->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>

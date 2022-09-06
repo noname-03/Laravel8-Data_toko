@@ -91,12 +91,6 @@ class DetailTransactionController extends Controller
         return redirect()->route('detailtransaction.show', [$transactionId, $detailTransactionsId]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($transactionId, $detailTransactionsId)
     {
         $transaction = Transaction::findOrFail($transactionId);

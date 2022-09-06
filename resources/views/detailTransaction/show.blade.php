@@ -37,10 +37,11 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Admin</h1>
-        {{-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-            For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official
-                DataTables documentation</a>.</p> --}}
+        @if (Auth::user()->role == 'admin')
+            <h1 class="h3 mb-2 text-gray-800">Admin</h1>
+        @else
+            <h1 class="h3 mb-2 text-gray-800">User</h1>
+        @endif
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -104,24 +105,38 @@
                                     <td>Status : {{ $item->status }} {{ $item->created_at }}</td>
                                 </tr>
                                 @endforeach
-                                <br>
-                                {{-- <b>Direktur</b> --}}
-                                </td>
-                                <td style="width:13.3%; vertical-align: top; text-align: center">
-                                </td>
-                                <td style="width:13.3%; vertical-align: top; text-align: center">
-                                </td>
-                                <td style="width:13.3%; vertical-align: top; text-align: center">
-                                </td>
-                                <td style="width:30%; vertical-align: top; text-align: center">
-                                    {{ $detailTransactions->created_at->format('Y-m-d') }}
-                                    {{-- Jakarta, 24 Agustus 2022 --}}
-                                    <br>
-                                    <br>
-                                    ({{ $transaction->user_from->name }})
-                                    <br>
-                                    <b>Admin</b>
-                                </td>
+                            </tbody>
+                        </table>
+                        <br>
+                        <table class="w-100 mb-3">
+                            <tbody>
+                                <tr>
+                                    <td style="width:30%; vertical-align: top; text-align: center">
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        ({{ $transaction->user_to->name }})
+                                        <br>
+                                        <b>Direktur</b>
+                                    </td>
+                                    <td style="width:13.3%; vertical-align: top; text-align: center">
+                                    </td>
+                                    <td style="width:13.3%; vertical-align: top; text-align: center">
+                                    </td>
+                                    <td style="width:13.3%; vertical-align: top; text-align: center">
+                                    </td>
+                                    <td style="width:30%; vertical-align: top; text-align: center">
+                                        {{ $detailTransactions->created_at->format('Y-m-d') }}
+                                        {{-- Jakarta, 24 Agustus 2022 --}}
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        ({{ $transaction->user_from->name }})
+                                        <br>
+                                        <b>Admin</b>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -129,23 +144,35 @@
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <div class="form-row">
-                <div class="form-group col-md-1">
-                    <form action="{{ route('detailtransaction.send', [$transaction->id, $detailTransactions->id]) }}"
-                        method="post">
-                        @csrf @method('POST')
-                        <button type="submit" class="btn btn-success"
-                            {{ $cekButtonDikirim > '0' ? 'disabled' : '' }}>Kirim</button>
-                    </form>
-                </div>
-                <div class="form-group col-md-1">
-                    <form action="{{ route('detailtransaction.accept', [$transaction->id, $detailTransactions->id]) }}"
-                        method="post">
-                        @csrf @method('POST')
-                        <button type="submit" class="btn btn-info"
-                            {{ $cekButtonDiterima > '0' ? 'disabled' : '' }}>Terima</button>
-                    </form>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <div class="card-body">
+                    <div class="w-100 mx-auto">
+                        <div class="form-row">
+                            <div class="form-group col-md-1">
+                                <form
+                                    action="{{ route('detailtransaction.send', [$transaction->id, $detailTransactions->id]) }}"
+                                    method="post">
+                                    @csrf @method('POST')
+                                    <button type="submit" class="btn btn-success"
+                                        {{ $cekButtonDikirim > '0' ? 'disabled' : '' }}>Kirim</button>
+                                </form>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <form
+                                    action="{{ route('detailtransaction.accept', [$transaction->id, $detailTransactions->id]) }}"
+                                    method="post">
+                                    @csrf @method('POST')
+                                    <button type="submit" class="btn btn-info"
+                                        {{ $cekButtonDiterima > '0' ? 'disabled' : '' }}>Terima</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div>
+                            <img src="{{ asset('img/Maps.jpg') }}" alt="maps" srcset="" width="100%"
+                                height="25%">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\DetailTransactionController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\User\ProductController as UserProductController;
+use App\Http\Controllers\ReportController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,15 +33,22 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/home1', [App\Http\Controllers\HomeController::class, 'home'])->name('home1');
 // Route::middleware(['auth', 'role:admin'])->group(function () {
 
-Route::prefix('/admin')->name('admin.')->middleware(['role:admin|user', 'auth'])->group(function () {
-    Route::resource('transaction', TransactionController::class);
-    Route::get('/transaction/{transaction_id}/detailtransaction', [DetailTransactionController::class, 'index'])->name('detailtransaction.index');
-    Route::get('/transaction/{transaction_id}/detailtransaction/create', [DetailTransactionController::class, 'create'])->name('detailtransaction.create');
-    Route::post('/transaction/{transaction_id}/detailtransaction', [DetailTransactionController::class, 'store'])->name('detailtransaction.store');
-    Route::get('/transaction/{transaction_id}/detailtransaction/{detailtransaction_id}/show', [DetailTransactionController::class, 'show'])->name('detailtransaction.show');
-    Route::post('/transaction/{transaction_id}/detailtransaction/{detailtransaction_id}/accept', [DetailTransactionController::class, 'accept'])->name('detailtransaction.accept');
-    Route::post('/transaction/{transaction_id}/detailtransaction/{detailtransaction_id}/send', [DetailTransactionController::class, 'send'])->name('detailtransaction.send');
-});
+// Route::prefix('/admin')->name('admin.')->middleware(['role:admin|user', 'auth'])->group(function () {
+Route::resource('transaction', TransactionController::class);
+Route::get('/transaction/{transaction_id}/detailtransaction', [DetailTransactionController::class, 'index'])->name('detailtransaction.index');
+Route::get('/transaction/{transaction_id}/detailtransaction/create', [DetailTransactionController::class, 'create'])->name('detailtransaction.create');
+Route::post('/transaction/{transaction_id}/detailtransaction', [DetailTransactionController::class, 'store'])->name('detailtransaction.store');
+Route::get('/transaction/{transaction_id}/detailtransaction/{detailtransaction_id}/show', [DetailTransactionController::class, 'show'])->name('detailtransaction.show');
+Route::post('/transaction/{transaction_id}/detailtransaction/{detailtransaction_id}/accept', [DetailTransactionController::class, 'accept'])->name('detailtransaction.accept');
+Route::post('/transaction/{transaction_id}/detailtransaction/{detailtransaction_id}/send', [DetailTransactionController::class, 'send'])->name('detailtransaction.send');
+// });
+
+Route::get('/laporan/category', [ReportController::class, 'category'])->name('report.category');
+Route::get('/laporan/cabang', [ReportController::class, 'cabang'])->name('report.cabang');
+Route::get('/laporan/user', [ReportController::class, 'user'])->name('report.user');
+Route::get('/laporan/product/out', [ReportController::class, 'product_out'])->name('report.product.out');
+Route::get('/laporan/product/in', [ReportController::class, 'product_in'])->name('report.product.in');
+Route::get('/laporan//cabang/{cabang_id}/product', [ReportController::class, 'product'])->name('report.product');
 
 Route::prefix('/admin')->name('admin.')->middleware(['role:admin', 'auth'])->group(function () {
     // Route::get('/admin', [OperatorController::class, 'index'])->name('operator');
@@ -78,5 +87,13 @@ Route::prefix('/user')->name('user.')->middleware(['role:user', 'auth'])->group(
     Route::get('/cabang/{cabang_id}/product/{product_id}/edit', [UserProductController::class, 'edit'])->name('product.edit');
     Route::put('/cabang/{cabang_id}/product/{product_id}', [UserProductController::class, 'update'])->name('product.update');
     Route::delete('/cabang/{cabang_id}/product/{product_id}', [UserProductController::class, 'destroy'])->name('product.destroy');
+
+    Route::resource('transaction', TransactionController::class);
+    Route::get('/transaction/{transaction_id}/detailtransaction', [DetailTransactionController::class, 'index'])->name('detailtransaction.index');
+    Route::get('/transaction/{transaction_id}/detailtransaction/create', [DetailTransactionController::class, 'create'])->name('detailtransaction.create');
+    Route::post('/transaction/{transaction_id}/detailtransaction', [DetailTransactionController::class, 'store'])->name('detailtransaction.store');
+    Route::get('/transaction/{transaction_id}/detailtransaction/{detailtransaction_id}/show', [DetailTransactionController::class, 'show'])->name('detailtransaction.show');
+    Route::post('/transaction/{transaction_id}/detailtransaction/{detailtransaction_id}/accept', [DetailTransactionController::class, 'accept'])->name('detailtransaction.accept');
+    Route::post('/transaction/{transaction_id}/detailtransaction/{detailtransaction_id}/send', [DetailTransactionController::class, 'send'])->name('detailtransaction.send');
     //semua route dalam grup ini hanya bisa diakses user
 });

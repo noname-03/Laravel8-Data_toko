@@ -40,15 +40,20 @@
                             @foreach ($products as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->user->name }}</td>
+                                    <td>{{ $item->name }}</td>
                                     <td>{{ $item->qty }}</td>
-                                    <td><img src="{{ asset('storage/images/product/'.$item->photo) }}" width="40" height="40"></td>
+                                    <td><img src="{{ asset('storage/images/product/' . $item->photo) }}" width="40"
+                                            height="40"></td>
                                     <td>
-                                        <form action="{{ route('user.product.destroy', [$user->id, $item->id]) }}" method="post">
+                                        <form action="{{ route('user.product.destroy', [$user->id, $item->id]) }}"
+                                            method="post">
                                             @csrf @method('DELETE')
-                                            <a class="btn btn-primary" href="{{ route('user.product.edit', [$user->id, $item->id]) }}"
+                                            <a class="btn btn-primary"
+                                                href="{{ route('user.product.edit', [$user->id, $item->id]) }}"
                                                 role="button"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-success" href="{{ route('user.product.show',  [$user->id, $item->id]) }}" role="button"><i class="fa fa-eye"></i></a>
+                                            <a class="btn btn-success"
+                                                href="{{ route('user.product.show', [$user->id, $item->id]) }}"
+                                                role="button"><i class="fa fa-eye"></i></a>
                                             <button type="submit" class="btn btn-danger"
                                                 onclick="return confirm('apakah anda mau menghapus data ini ?')"><i
                                                     class="fa fa-trash"></i></button>

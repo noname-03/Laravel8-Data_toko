@@ -3,7 +3,11 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Admin</h1>
+        @if (Auth::user()->role == 'admin')
+            <h1 class="h3 mb-2 text-gray-800">Admin</h1>
+        @else
+            <h1 class="h3 mb-2 text-gray-800">User</h1>
+        @endif
         {{-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
             For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official
                 DataTables documentation</a>.</p> --}}
@@ -23,6 +27,7 @@
                                 <th>No</th>
                                 <th>Dari Cabang</th>
                                 <th>Ke Cabang</th>
+                                <th>Tanggal Dan Waktu</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -31,6 +36,7 @@
                                 <th>No</th>
                                 <th>Dari Cabang</th>
                                 <th>Ke Cabang</th>
+                                <th>Tanggal Dan Waktu</th>
                                 <th>Aksi</th>
                             </tr>
                         </tfoot>
@@ -40,12 +46,15 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->user_from->name }}</td>
                                     <td>{{ $item->user_to->name }}</td>
+                                    <td>{{ $item->created_at }}</td>
                                     <td>
                                         <form action="{{ route('transaction.destroy', $item->id) }}" method="post">
                                             @csrf @method('DELETE')
                                             <a class="btn btn-primary" href="{{ route('transaction.edit', $item->id) }}"
                                                 role="button"><i class="fa fa-edit"></i></a>
-                                            <a class="btn btn-success" href="{{ route('detailtransaction.index', $item->id) }}" role="button"><i class="fa fa-plus"></i></a>
+                                            <a class="btn btn-success"
+                                                href="{{ route('detailtransaction.index', $item->id) }}" role="button"><i
+                                                    class="fa fa-plus"></i></a>
                                             <button type="submit" class="btn btn-danger"
                                                 onclick="return confirm('apakah anda mau menghapus data ini ?')"><i
                                                     class="fa fa-trash"></i></button>
