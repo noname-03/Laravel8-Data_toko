@@ -30,13 +30,13 @@ class ReportController extends Controller
     {
         $transaction = Transaction::where('from_user_id', Auth::user()->id)->get();
         // dd($transaction);
-        return view('transaction.index', compact('transaction'));
+        return view('report.productout', compact('transaction'));
     }
     public function product_in()
     {
         $transaction = Transaction::where('to_user_id', Auth::user()->id)->get();
         // dd($transactions);
-        return view('transaction.index', compact('transaction'));
+        return view('report.productin', compact('transaction'));
     }
     public function product($userId)
     {

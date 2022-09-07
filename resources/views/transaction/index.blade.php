@@ -6,7 +6,7 @@
         @if (Auth::user()->role == 'admin')
             <h1 class="h3 mb-2 text-gray-800">Admin</h1>
         @else
-            <h1 class="h3 mb-2 text-gray-800">User</h1>
+            <h1 class="h3 mb-2 text-gray-800">{{ Auth::user()->name }}</h1>
         @endif
         {{-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
             For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official
