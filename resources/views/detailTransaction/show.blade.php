@@ -62,7 +62,9 @@
                                 </td> --}}
                                     <td style="width: 60%; vertical-align: top; font-size: 13px;">
                                         <p class="mb-0">Dari : {{ $transaction->user_from->name }}</p>
+                                        <p class="mb-0">Alamat : {{ $transaction->user_from->address }}</p>
                                         <p class="mb-0">Untuk : {{ $transaction->user_to->name }}</p>
+                                        <p class="mb-0">Alamat : {{ $transaction->user_to->address }}</p>
                                         {{-- <p class="mb-0">Email: hausofficial@haus.com</p> --}}
                                     </td>
                                     <td style="width: 15%; vertical-align: top; text-align: right;">
