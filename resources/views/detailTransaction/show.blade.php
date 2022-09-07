@@ -40,7 +40,7 @@
         @if (Auth::user()->role == 'admin')
             <h1 class="h3 mb-2 text-gray-800">Admin</h1>
         @else
-            <h1 class="h3 mb-2 text-gray-800">User</h1>
+            <h1 class="h3 mb-2 text-gray-800">{{ Auth::user()->name }}</h1>
         @endif
 
         <!-- DataTales Example -->

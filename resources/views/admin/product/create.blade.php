@@ -11,47 +11,49 @@
                 <p></p>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.product.store', $user->id) }}" enctype="multipart/form-data" method="POST" id="demo-form2" data-parsley-validate
-                    class="form-horizontal form-label-left">
+                <form action="{{ route('admin.product.store', $user->id) }}" enctype="multipart/form-data" method="POST"
+                    id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label >Kategori <span class="required">*</span></label>
+                            <label>Kategori <span class="required">*</span></label>
                             <select name="category_id" class="form-control" id="exampleFormControlSelect1" required>
-                                    <option selected>Choose...</option>
-                                    @foreach ($category as $item)
-                                    <option value="{{ $item->id }}">{{$item->name}}</option>
-                                    @endforeach
+                                <option selected>Choose...</option>
+                                @foreach ($category as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label >Name <span class="required">*</span>
+                            <label>Name <span class="required">*</span>
                             </label>
                             <input type="text" name="name" id="first-name" required="required" class="form-control ">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="no_Hp">Kode Produk <span class="required">*</span></label>
-                            <input type="text" class="form-control" id="code_product" name="code_product" placeholder="Masukan Kode Produk" required>
+                            <input type="text" class="form-control" id="code_product" name="code_product"
+                                placeholder="Masukan Kode Produk" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="qty">Stok <span class="required">*</span></label>
-                            <input type="text" class="form-control" id="qty" name="qty" placeholder="Masukan Kode Jumlah Stok" required>
+                            <input type="text" class="form-control" id="qty" name="qty"
+                                placeholder="Masukan Kode Jumlah Stok" required>
                         </div>
                         <div class="form-group col-6">
                             <label for="inputEmail4">Foto</label>
-                            <input type="file" class="form-control" id="thumbnail" name="file" placeholder="Thumbnail" required>
+                            <input type="file" class="form-control" id="thumbnail" name="file" placeholder="Thumbnail"
+                                required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label >Price <span class="required">*</span>
+                            <label>Price <span class="required">*</span>
                             </label>
-                            <input type="text" name="price" id="role" required="required" class="form-control " >
+                            <input type="text" name="price" id="role" required="required" class="form-control ">
                         </div>
                     </div>
 
                     <div class="ln_solid"></div>
                     <div class="item form-group">
-                        <div class="col-md-6 col-sm-6 ">
-                            <button class="btn btn-primary" type="reset">Reset</button>
+                        <div class="col-md-12 col-sm-12">
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </div>

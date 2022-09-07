@@ -37,7 +37,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">User</h1>
+        <h1 class="h3 mb-2 text-gray-800">{{ Auth::user()->name }}</h1>
         {{-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
             For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official
                 DataTables documentation</a>.</p> --}}
@@ -61,9 +61,10 @@
                                         <p style="font-size: 23px; font-weight: bold;">Laporan Product</p>
                                     </td>
                                     <td style="width: 60%; vertical-align: top; font-size: 13px;">
-                                        {{-- <p class="mb-0">Haus Depok</p>
-                                        <p class="mb-0">Telp: 021-33123</p>
-                                        <p class="mb-0">Email: hausofficial@haus.com</p> --}}
+                                        <p class="mb-0">Nama : {{ Auth::user()->name }}</p>
+                                        <p class="mb-0">No Handphone :
+                                            {{ Auth::user()->phone == null ? '-' : Auth::user()->phone }}</p>
+                                        <p class="mb-0">Email : {{ Auth::user()->email }}</p>
                                     </td>
                                     <td style="width: 15%; vertical-align: top; text-align: right;">
 

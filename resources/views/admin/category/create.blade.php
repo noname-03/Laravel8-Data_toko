@@ -24,7 +24,6 @@
                     </div>
                     <div class="item form-group">
                         <div class="col-md-12 col-sm-12">
-                            {{-- <button class="btn btn-primary" type="reset">Reset</button> --}}
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </div>
