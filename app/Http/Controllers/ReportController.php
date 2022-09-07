@@ -52,4 +52,9 @@ class ReportController extends Controller
         $products = Product::all();
         return view('report.productAdmin', compact('products'));
     }
+    public function transaction()
+    {
+        $transaction = Transaction::all();
+        return view('report.transaction', compact('transaction'));
+    }
 }

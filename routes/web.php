@@ -50,6 +50,7 @@ Route::get('/laporan/product/out', [ReportController::class, 'product_out'])->na
 Route::get('/laporan/product/in', [ReportController::class, 'product_in'])->name('report.product.in');
 Route::get('/laporan/cabang/{cabang_id}/product', [ReportController::class, 'product'])->name('report.product');
 Route::get('/laporan/product', [ReportController::class, 'productAdmin'])->name('report.productAdmin');
+Route::get('/laporan/transakasi', [ReportController::class, 'transaction'])->name('report.transaction');
 
 Route::prefix('/admin')->name('admin.')->middleware(['role:admin', 'auth'])->group(function () {
     // Route::get('/admin', [OperatorController::class, 'index'])->name('operator');
